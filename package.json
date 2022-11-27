@@ -1,0 +1,19 @@
+{
+  "name": "mysql-benchmark-env",
+  "version": "1.0.0",
+  "description": "",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@faker-js/faker": "^7.6.0"
+  },
+  "dependencies": {
+    "csv": "^6.2.3",
+    "mysql2": "^2.3.3"
+  }
+}

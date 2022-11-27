@@ -1,0 +1,19 @@
+version: '3.9'
+services:
+
+  mysql_bench_db:
+    image: mysql
+    command: --default-authentication-plugin=caching_sha2_password
+    restart: always
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_USER: user
+      MYSQL_PASSWORD: password
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_DATABASE: mysql_bench_db
+    volumes:
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+
+volumes:
+  mysql_bench_volume: #driver:local
