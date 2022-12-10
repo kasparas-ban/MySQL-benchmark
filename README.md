@@ -14,7 +14,7 @@ Run the scripts below in order to get started.
 
 ### 1. Create and start a MySQL database in a container
 
-`docker compose up`
+`docker compose up -d`
 
 This creates MySQL database and runs all the SQL commands in `init.sql` file. The commands are used to create initial tables where the generated data will be stored.
 

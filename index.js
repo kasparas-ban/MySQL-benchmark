@@ -1,3 +1,4 @@
+import fs from 'fs';
 import mysql from "mysql2";
 
 // === Helper functions ========================================================
@@ -12,15 +13,20 @@ function connectToDB(connection) {
     if (err) throw err;
     console.log("Selected appropriate DB");
   });
+
+  connection.query(`SET GLOBAL local_infile = TRUE;`, (err) => {
+    if (err) throw err;
+    console.log("Set local_infile variable");
+  })
 }
 
 function clearDB(c, callback) {
-  c.query(`DELETE FROM user;`, (err, result) => {
+  c.query(`DELETE FROM friendships;`, (err, result) => {
     if (err) throw err;
     console.log('Deleted all rows from the users table.')
   });
 
-  c.query(`TRUNCATE user;`, (err, result) => {
+  c.query(`TRUNCATE friendships;`, (err, result) => {
     if (err) throw err;
     console.log('Truncated the users table.');
     c.end();
@@ -47,7 +53,7 @@ function populateDB(connection, fileName, tableName, callback) {
 // === Running the program ====================================================
 
 const mysql_host = "localhost";
-const mysql_username = "user";
+const mysql_username = "root";
 const mysql_password = "password";
 
 // Connecting to the database
@@ -70,4 +76,4 @@ if (clearArg) {
 
 console.log(`=== Populating the database ===`);
 
-populateDB(con, 'users.csv', 'user', () => process.exit());
+populateDB(con, 'relations.csv', 'friendships', () => process.exit());
